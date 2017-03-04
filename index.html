@@ -1,6 +1,122 @@
-<html>
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <title>ECHart</title>
+        <script src="echarts.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    </head>
 
 
+<body>
+    <h1> Samples of Echarts </h1>
+    <h3> Julianna Wu 13253514 </h3>
+    <h3> Course: JOUR2106 </h3>
 
 
+<div id="main2" style="width: 700px; height: 400px;">
+</div>
+
+<script>
+// app.title = '正负条形图';
+
+option = {
+    tooltip : {
+        trigger: 'axis',
+        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+    legend: {
+        data:['Total Population', 'Male', 'Female']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis : [
+        {
+            type : 'value'
+        }
+    ],
+    yAxis : [
+        {
+            type : 'category',
+            axisTick : {show: false},
+            data : ['1991','1996','2001']
+        }
+    ],
+    series : [
+        {
+            name:'Total Population',
+            type:'bar',
+            label: {
+                normal: {
+                    show: true,
+                    position: 'inside'
+                }
+            },
+            data:[5522281, 6217556, 6708389]
+        },
+        {
+            name:'Male',
+            type:'bar',
+            stack: '总量',
+            label: {
+                normal: {
+                    show: true,
+                    labelformatter: '{c}%'
+                }
+            },
+            data:[2811991, 3108107, 3285344]
+        },
+        {
+            name:'Female',
+            type:'bar',
+            stack: '总量',
+            label: {
+                normal: {
+                    show: true,
+                    position: 'left',
+                    labelformatter: '{c}%'
+                }
+            },
+            data:[-2710290, -3109449, -3423045]
+        }
+    ]
+};
+        var myChart1 = echarts.init(document.getElementById('main2'));
+        myChart1.setOption(option);
+</script>
+</div>
+
+<p>
+        In this example, we load the eCharts configuration data from an external file:
+        <a href="option.json">option.json</a>
+    </p>
+    <p>
+        We use the "getJSON" function in jQuery.
+    </p>
+
+    <div id="main1" style="width: 600px;height:400px;">place holder</div>
+
+    <script type="text/javascript">
+        // jQuery conventional framework.
+        // This ensures the code block is executed after whole document is ready
+        $(function() {
+            // Argument 1: URL to the external JSON file
+            // Argument 2: The placeholder variable of the data loaded from external JSON file
+            $.getJSON('option.json', function(data) {
+                // When entering this part, variable "data" holds the Javascript object 
+                // corresponding to the external JSON file
+                var option = data;
+                var myChart1 = echarts.init(document.getElementById('main1'));
+                myChart1.setOption(option);
+            })
+        });
+    </script>
+
+
+</body>
 </html>
